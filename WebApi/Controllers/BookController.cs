@@ -7,6 +7,7 @@ using WebApi.BookOperations.UpdateBooks;
 using static WebApi.BookOperations.UpdateBooks.UpdateBookCommand;
 using WebApi.BookOperations.DeleteBooks;
 using AutoMapper;
+using FluentValidation;
 
 namespace WebApi.Controllers
 {
@@ -62,6 +63,8 @@ namespace WebApi.Controllers
             {
                 GetBookByIdCommand command = new GetBookByIdCommand(_context, _mapper);
                 command.BookId = id;
+                GetBookByIdValidator validator = new GetBookByIdValidator();
+                validator.ValidateAndThrow(command);
                 result = command.Handle();
             }
             catch(Exception ex)
@@ -86,7 +89,18 @@ namespace WebApi.Controllers
             try
             {
                 command.Model = newBook;
+                CreateBookValidator validator = new CreateBookValidator();
+                validator.ValidateAndThrow(command);
                 command.Handle();
+                // if (!result.IsValid)
+                //     foreach (var item in result.Errors)
+                //     {
+                //         Console.WriteLine("Property: " + item.PropertyName + " - Error Message: " + item.ErrorMessage);    
+                //     }
+                   
+                // else                 BU IF ELSE YERINE YUKARIDA .ValideAndThrow() kullanmak daha makul cunku user ekranında 200 donmesını istemiyorum
+                //     command.Handle();   
+                
             }                       //Handle'dan atilan exceptionu tutmak icin try catch yaptik
             catch(Exception ex)
             {
@@ -103,6 +117,10 @@ namespace WebApi.Controllers
                 UpdateBookCommand command = new UpdateBookCommand(_context, _mapper);
                 command.BookId = id;
                 command.Model = updatedBook;
+                
+                UpdateBookValidator validator = new UpdateBookValidator();
+                validator.ValidateAndThrow(command);
+                
                 command.Handle();
             }
             catch(Exception ex)
@@ -118,6 +136,10 @@ namespace WebApi.Controllers
             try
             {
                 command.BookId = id;
+               
+                DeleteBookValidator validator = new DeleteBookValidator();
+                validator.ValidateAndThrow(command);
+               
                 command.Handle();
             }
             catch(Exception ex)
