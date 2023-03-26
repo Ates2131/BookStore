@@ -14,7 +14,7 @@ namespace WebApi.BookOperations.CreateBooks
             _mapper = mapper;
         }
 
-        public async void Handle()
+        public void Handle()
         {
             var newBook = _dbContext.Books.SingleOrDefault(x => x.Title == Model.Title);
             if (newBook is not null)
