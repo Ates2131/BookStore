@@ -1,3 +1,4 @@
+using AutoMapper;
 using WebApi.DBOperations;
 
 namespace WebApi.BookOperations.CreateBooks
@@ -6,22 +7,24 @@ namespace WebApi.BookOperations.CreateBooks
     {
         public CreateBookViewModel Model { get; set; }
         private readonly BookStoreDbContext _dbContext;
-        public CreateBookCommand(BookStoreDbContext dbContext)
+        private readonly IMapper _mapper;
+        public CreateBookCommand(BookStoreDbContext dbContext, IMapper mapper)
         {
             _dbContext = dbContext;
+            _mapper = mapper;
         }
 
-        public void Handle()
+        public async void Handle()
         {
             var newBook = _dbContext.Books.SingleOrDefault(x => x.Title == Model.Title);
             if (newBook is not null)
                 throw new InvalidOperationException("This book is already registered."); //Modelden fırlattigini posttan tutman lazim
         
-            newBook = new Book();
-            newBook.Title = Model.Title;
-            newBook.GenreId = Model.GenreId;
-            newBook.PageCount = Model.PageCount;
-            newBook.PublishDate = Model.PublishDate;
+            newBook = _mapper.Map<Book>(Model);//new Book();
+            // newBook.Title = Model.Title;
+            // newBook.GenreId = Model.GenreId;
+            // newBook.PageCount = Model.PageCount;
+            // newBook.PublishDate = Model.PublishDate;
 
             _dbContext.Books.Add(newBook);
             _dbContext.SaveChanges();

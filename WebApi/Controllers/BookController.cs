@@ -6,6 +6,7 @@ using static WebApi.BookOperations.CreateBooks.CreateBookCommand;
 using WebApi.BookOperations.UpdateBooks;
 using static WebApi.BookOperations.UpdateBooks.UpdateBookCommand;
 using WebApi.BookOperations.DeleteBooks;
+using AutoMapper;
 
 namespace WebApi.Controllers
 {
@@ -14,10 +15,12 @@ namespace WebApi.Controllers
     public class BookController : Controller
     {
         private readonly BookStoreDbContext _context;
+        private readonly IMapper _mapper;
 
-        public BookController(BookStoreDbContext context)
+        public BookController(BookStoreDbContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         // private static List<Book> BookList = new List<Book>(){
@@ -46,7 +49,7 @@ namespace WebApi.Controllers
 
         [HttpGet()]
         public IActionResult GetBooks(){
-            GetBooksQuery query = new GetBooksQuery(_context);
+            GetBooksQuery query = new GetBooksQuery(_context, _mapper);
             var result = query.Handle();
             return Ok(result);
         }
@@ -57,7 +60,7 @@ namespace WebApi.Controllers
             SpesificBookViewModel result;
             try
             {
-                GetBookByIdCommand command = new GetBookByIdCommand(_context);
+                GetBookByIdCommand command = new GetBookByIdCommand(_context, _mapper);
                 command.BookId = id;
                 result = command.Handle();
             }
@@ -79,7 +82,7 @@ namespace WebApi.Controllers
         [HttpPost]
         public IActionResult AddBook([FromBody] CreateBookViewModel newBook)
         {
-            CreateBookCommand command = new CreateBookCommand(_context);
+            CreateBookCommand command = new CreateBookCommand(_context, _mapper);
             try
             {
                 command.Model = newBook;
@@ -97,7 +100,7 @@ namespace WebApi.Controllers
         {
             try
             {
-                UpdateBookCommand command = new UpdateBookCommand(_context);
+                UpdateBookCommand command = new UpdateBookCommand(_context, _mapper);
                 command.BookId = id;
                 command.Model = updatedBook;
                 command.Handle();
