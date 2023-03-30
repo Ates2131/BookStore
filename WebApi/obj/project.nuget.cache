@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "WaonlSnbjnuCZh99skgvhSefjdMbImD5L1c3BYlssjGbOa6VHw8E1vH0NaoOD8Hv4wfdZpHCwwUQ1qnQVMTeyg==",
+  "dgSpecHash": "eIbaxrbm/1AVExda+g87rwGPSFWKKbsXJjJt330cn3J56hIfY845Gr0sRr4KfIzkTechMyPZVrNK1wSMoAEbWA==",
   "success": true,
   "projectFilePath": "C:\\Users\\MONSTER\\Desktop\\Projeler\\API_giris\\BookStore\\WebApi\\WebApi.csproj",
   "expectedPackageFiles": [
@@ -22,6 +22,7 @@
     "C:\\Users\\MONSTER\\.nuget\\packages\\microsoft.extensions.options\\6.0.0\\microsoft.extensions.options.6.0.0.nupkg.sha512",
     "C:\\Users\\MONSTER\\.nuget\\packages\\microsoft.extensions.primitives\\6.0.0\\microsoft.extensions.primitives.6.0.0.nupkg.sha512",
     "C:\\Users\\MONSTER\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\MONSTER\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
     "C:\\Users\\MONSTER\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
     "C:\\Users\\MONSTER\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
     "C:\\Users\\MONSTER\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",

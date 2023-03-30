@@ -59,18 +59,13 @@ namespace WebApi.Controllers
         public IActionResult GetById(int id)
         {
             SpesificBookViewModel result;
-            try
-            {
-                GetBookByIdCommand command = new GetBookByIdCommand(_context, _mapper);
-                command.BookId = id;
-                GetBookByIdValidator validator = new GetBookByIdValidator();
-                validator.ValidateAndThrow(command);
-                result = command.Handle();
-            }
-            catch(Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+           
+            GetBookByIdCommand command = new GetBookByIdCommand(_context, _mapper);
+            command.BookId = id;
+            GetBookByIdValidator validator = new GetBookByIdValidator();
+            validator.ValidateAndThrow(command);
+            result = command.Handle();
+
             return Ok(result);
         }
         // [HttpGet("{id}")]
@@ -86,12 +81,10 @@ namespace WebApi.Controllers
         public IActionResult AddBook([FromBody] CreateBookViewModel newBook)
         {
             CreateBookCommand command = new CreateBookCommand(_context, _mapper);
-            try
-            {
-                command.Model = newBook;
-                CreateBookValidator validator = new CreateBookValidator();
-                validator.ValidateAndThrow(command);
-                command.Handle();
+            command.Model = newBook;
+            CreateBookValidator validator = new CreateBookValidator();
+            validator.ValidateAndThrow(command);
+            command.Handle();
                 // if (!result.IsValid)
                 //     foreach (var item in result.Errors)
                 //     {
@@ -100,52 +93,35 @@ namespace WebApi.Controllers
                    
                 // else                 BU IF ELSE YERINE YUKARIDA .ValideAndThrow() kullanmak daha makul cunku user ekranında 200 donmesını istemiyorum
                 //     command.Handle();   
-                
-            }                       //Handle'dan atilan exceptionu tutmak icin try catch yaptik
-            catch(Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
             return Ok();
         }
 
         [HttpPut("{id}")]
         public IActionResult UpdateBook(int id, [FromBody] UpdatedBookViewModel updatedBook)
         {
-            try
-            {
-                UpdateBookCommand command = new UpdateBookCommand(_context, _mapper);
-                command.BookId = id;
-                command.Model = updatedBook;
+            
+            UpdateBookCommand command = new UpdateBookCommand(_context, _mapper);
+            command.BookId = id;
+            command.Model = updatedBook;
                 
-                UpdateBookValidator validator = new UpdateBookValidator();
-                validator.ValidateAndThrow(command);
+            UpdateBookValidator validator = new UpdateBookValidator();
+            validator.ValidateAndThrow(command);
                 
-                command.Handle();
-            }
-            catch(Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            command.Handle();
             return Ok();
         }
 
         [HttpDelete("{id}")]
         public IActionResult DeleteBook(int id){
             DeleteBookCommand command = new DeleteBookCommand(_context);
-            try
-            {
-                command.BookId = id;
+            
+            command.BookId = id;
                
-                DeleteBookValidator validator = new DeleteBookValidator();
-                validator.ValidateAndThrow(command);
+            DeleteBookValidator validator = new DeleteBookValidator();
+            validator.ValidateAndThrow(command);
                
-                command.Handle();
-            }
-            catch(Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            command.Handle();
+            
             return Ok();
         }
 

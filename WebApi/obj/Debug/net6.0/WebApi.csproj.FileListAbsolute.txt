@@ -36,3 +36,4 @@ C:\Users\MONSTER\Desktop\Projeler\API_giris\BookStore\WebApi\obj\Debug\net6.0\re
 C:\Users\MONSTER\Desktop\Projeler\API_giris\BookStore\WebApi\obj\Debug\net6.0\WebApi.pdb
 C:\Users\MONSTER\Desktop\Projeler\API_giris\BookStore\WebApi\obj\Debug\net6.0\WebApi.genruntimeconfig.cache
 C:\Users\MONSTER\Desktop\Projeler\API_giris\BookStore\WebApi\obj\Debug\net6.0\ref\WebApi.dll
+C:\Users\MONSTER\Desktop\Projeler\API_giris\BookStore\WebApi\bin\Debug\net6.0\Newtonsoft.Json.dll
